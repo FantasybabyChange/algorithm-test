@@ -29,7 +29,7 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
-
+[compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 repositories {
     mavenLocal()
     maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
