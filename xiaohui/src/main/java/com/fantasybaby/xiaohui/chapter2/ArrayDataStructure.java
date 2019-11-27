@@ -1,6 +1,5 @@
 package com.fantasybaby.xiaohui.chapter2;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -34,6 +33,15 @@ public class ArrayDataStructure {
         array[index]=elment;
         size++;
     }
+    public void remove(int index){
+        if(index < 0 || index > size ){
+            throw new ArrayIndexOutOfBoundsException("数组越界了");
+        }
+        for (int i = index; i < array.length - 1; i++) {
+            array[i] = array[i+1];
+        }
+        size--;
+    }
     public void print(){
         System.out.println(Arrays.toString(array));
     }
@@ -46,10 +54,12 @@ public class ArrayDataStructure {
         ArrayDataStructure arrayDataStructure = new ArrayDataStructure(3);
         arrayDataStructure.insert(0,10);
         arrayDataStructure.insert(1,2);
-        arrayDataStructure.insert(2,3);
+        arrayDataStructure.insert(2,6);
         arrayDataStructure.print();
         arrayDataStructure.insert(3,3);
         arrayDataStructure.insert(4,3);
+        arrayDataStructure.print();
+        arrayDataStructure.remove(2);
         arrayDataStructure.print();
     }
 }
