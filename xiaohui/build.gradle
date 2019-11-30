@@ -25,6 +25,9 @@ dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
     compile group: 'org.projectlombok', name: 'lombok', version:'1.16.16'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
