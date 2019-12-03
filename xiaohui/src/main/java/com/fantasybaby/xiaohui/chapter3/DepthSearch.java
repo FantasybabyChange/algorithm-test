@@ -13,7 +13,7 @@ import java.util.Stack;
  * @author: liuxi
  * @time: 2019/12/2 20:03
  */
-public class TreeIterator {
+public class DepthSearch {
     @Data
     static class TreeNode<T>{
         private T data;
@@ -21,7 +21,7 @@ public class TreeIterator {
         private TreeNode<T> rightChild;
 
     }
-    public TreeIterator(){
+    public DepthSearch(){
 
     }
 
@@ -168,7 +168,7 @@ public class TreeIterator {
         List<Integer> inputList = Lists.newArrayList(new Integer[]{
                 3,2,9,null,null,10,null,null,8,null,4}
         );
-        TreeIterator iterator = new TreeIterator();
+        DepthSearch iterator = new DepthSearch();
         TreeNode<Integer> rootNode = iterator.createTreeNode(inputList);
         iterator.preOrderTraversal(rootNode);
         System.out.println();
