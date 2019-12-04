@@ -15,8 +15,8 @@ public class BinaryHeap {
      * 上浮插入的数据
      * @param array
      */
-    public void upAdjust(int[] array){
-        int childIndex = array.length - 1;
+    public void upAdjust(int[] array,int length){
+        int childIndex = length - 1;
         int parentIndex = (childIndex-1)/2;
         int temp = array[childIndex];
         /**
@@ -25,14 +25,14 @@ public class BinaryHeap {
         while (childIndex > 0 && array[parentIndex] > temp){
             array[childIndex] = array[parentIndex];
             childIndex = parentIndex;
-            parentIndex = (childIndex-1)/2;
+            parentIndex = (parentIndex-1)/2;
         }
-        array[parentIndex] = temp;
+        array[childIndex] = temp;
 
     }
 
     /**
-     *
+     *节点下沉
      * @param array
      * @param parentIndex
      * @param length
@@ -73,7 +73,7 @@ public class BinaryHeap {
     public static void main(String[] args) {
         int[] array = new int[]{1,3,2,6,5,7,8,9,10,0};
         BinaryHeap binaryHeap = new BinaryHeap();
-        binaryHeap.upAdjust(array);
+        binaryHeap.upAdjust(array,array.length);
         System.out.println(Arrays.toString(array));
 
         array =  new int[]{7,6,4,3,9,10,5,1};
