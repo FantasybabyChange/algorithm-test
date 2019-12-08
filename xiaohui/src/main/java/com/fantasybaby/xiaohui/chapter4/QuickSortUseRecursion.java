@@ -2,11 +2,12 @@ package com.fantasybaby.xiaohui.chapter4;
 
 import java.util.Arrays;
 
-/**快速排序
+/**快速排序 通过递归使用单边循环
+ * 和双边循环实现
  * 2019/12/8
  * @author FantasyBaby
  **/
-public class QuickSort {
+public class QuickSortUseRecursion {
     /**
      * 通过双边循环排序
      */
@@ -50,7 +51,7 @@ public class QuickSort {
         System.out.println("left:"+left);
         return  left;
     }
-    private int partitionSingle(int[] array,int startIndex,int endIndex){
+    public int partitionSingle(int[] array,int startIndex,int endIndex){
         /**
          * 这里可以使用第一个元素或者通过随机获取基准元素
          */
@@ -73,7 +74,7 @@ public class QuickSort {
     }
     public static void main(String[] args) {
         int[] array = new int[]{4,7,6,5,3,2,8,1};
-        new QuickSort().quickSort(array,0,array.length - 1,true);
+        new QuickSortUseRecursion().quickSort(array,0,array.length - 1,true);
         System.out.println(Arrays.toString(array));
     }
 }
