@@ -46,6 +46,7 @@ public class BucketSort {
         }
         for (int i = 0; i < array.length; i++) {
             /**
+             * (e-min)/((max - min)/(bucket-1))= (e-min)*(bucketNum-1)/(max-min)
              * 计算index
              */
             bucketWithElements.get((int) ((array[i]-min)*(bucketNum-1)/max-min)).add(array[i]);
