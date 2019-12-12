@@ -7,9 +7,7 @@
 package com.fantasybaby.xiaohui.chapter5;
 
 import com.fantasybaby.xiaohui.chapter2.Node;
-import com.google.common.collect.Lists;
 
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
