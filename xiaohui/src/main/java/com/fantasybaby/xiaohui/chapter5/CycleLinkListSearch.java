@@ -44,25 +44,63 @@ public class CycleLinkListSearch {
      * @param head
      * @return
      */
-    public int getCycleListLength(Node<Integer> head){
+    public int getCycleListLength(Node<Integer> head) {
         Node p1 = head;
         Node p2 = head;
         int count = 0;
         int length = 0;
-        while(Objects.nonNull(p1) && Objects.nonNull(p2.getNext())){
+        while (Objects.nonNull(p1) && Objects.nonNull(p2.getNext())) {
             p1 = p1.getNext();
             p2 = p2.getNext().getNext();
-            if(Objects.nonNull(p1)&&p1 == p2){
-                if(count == 0){
-                    length =0;
+            if (Objects.nonNull(p1) && p1 == p2) {
+                if (count == 0) {
+                    length = 0;
                     count++;
-                }else{
+                } else {
                     return length;
                 }
             }
             length++;
         }
         return 0;
+    }
+
+    /**
+     * 设P为环形入口节点  D为头节点到P的距离
+     * 首次相遇的点P2    入口点到P2距离位S1  p2到P的距离位 S2
+     * 因为指针2速度是指针1的两倍
+     * 所以  2*(D+S1)=n(S1+S2)+D+S1
+     * 得到 D=(n-1)(S1+S2)+S2
+     * 所以从头节点到P 和 P2走到P的距离一样
+     *
+     * @param head
+     * @return
+     */
+    public Node getInnerPoint(Node head){
+        Node p1 = head;
+        Node p2 = head;
+        Node firstNode = head;
+        Node firstCatchNode = null;
+        while(Objects.nonNull(p1) && Objects.nonNull(p2.getNext())){
+            p1 = p1.getNext();
+            p2 = p2.getNext().getNext();
+            if(Objects.nonNull(p1)&&p1 == p2){
+                firstCatchNode=p1;
+                break;
+            }
+        }
+        if(firstCatchNode != null){
+            while(firstCatchNode!= null && firstNode!= null){
+                firstNode = firstNode.getNext();
+                firstCatchNode = firstCatchNode.getNext();
+                if(firstNode == firstCatchNode){
+                    return firstNode;
+                }
+            }
+        }
+        return null;
+
+
     }
     public static void main(String[] args) {
         Node<Integer> head = new Node(5);
@@ -83,6 +121,9 @@ public class CycleLinkListSearch {
         System.out.println(isCycle);
         int length = new CycleLinkListSearch().getCycleListLength(head);
         System.out.println(length);
+
+        Node innerPoint = new CycleLinkListSearch().getInnerPoint(head);
+        System.out.println(innerPoint.getData());
 
 
 
