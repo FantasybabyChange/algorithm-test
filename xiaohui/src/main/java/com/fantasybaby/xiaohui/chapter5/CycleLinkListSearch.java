@@ -20,12 +20,24 @@ import java.util.Objects;
  * @date 2019-12-12 10:08
  */
 public class CycleLinkListSearch {
+    /**
+     * 用两个指针 p1 p2
+     * p2比p1快 通过追击原理 如果p2追上了p1则肯定有循环链表
+     * @param head
+     * @return
+     */
     public boolean judgeIsCycleLinkList(Node<Integer> head){
         Node p1 = head;
         Node p2 = head;
         while(Objects.nonNull(p1.getNext()) && Objects.nonNull(p2.getNext())){
             p1 = p1.getNext();
-            p2.getNext()
+            Node pn1 = p2.getNext();
+            if(Objects.nonNull(pn1)){
+                p2 = pn1.getNext();
+                if(Objects.nonNull(p1)&&p1 == p2){
+                    return true;
+                }
+            }
         }
         return false;
     }
