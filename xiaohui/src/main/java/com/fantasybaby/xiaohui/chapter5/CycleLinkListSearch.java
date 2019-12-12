@@ -29,17 +29,40 @@ public class CycleLinkListSearch {
     public boolean judgeIsCycleLinkList(Node<Integer> head){
         Node p1 = head;
         Node p2 = head;
-        while(Objects.nonNull(p1.getNext()) && Objects.nonNull(p2.getNext())){
+        while(Objects.nonNull(p1) && Objects.nonNull(p2.getNext())){
             p1 = p1.getNext();
-            Node pn1 = p2.getNext();
-            if(Objects.nonNull(pn1)){
-                p2 = pn1.getNext();
-                if(Objects.nonNull(p1)&&p1 == p2){
-                    return true;
-                }
+            p2 = p2.getNext().getNext();
+            if(Objects.nonNull(p1)&&p1 == p2){
+                return true;
             }
         }
         return false;
+    }
+
+    /**
+     * 第一次相遇到再一次相遇 前进的次数就是当前环的长度
+     * @param head
+     * @return
+     */
+    public int getCycleListLength(Node<Integer> head){
+        Node p1 = head;
+        Node p2 = head;
+        int count = 0;
+        int length = 0;
+        while(Objects.nonNull(p1) && Objects.nonNull(p2.getNext())){
+            p1 = p1.getNext();
+            p2 = p2.getNext().getNext();
+            if(Objects.nonNull(p1)&&p1 == p2){
+                if(count == 0){
+                    length =0;
+                    count++;
+                }else{
+                    return length;
+                }
+            }
+            length++;
+        }
+        return 0;
     }
     public static void main(String[] args) {
         Node<Integer> head = new Node(5);
@@ -58,6 +81,8 @@ public class CycleLinkListSearch {
         node6.setNext(node3);
         boolean isCycle = new CycleLinkListSearch().judgeIsCycleLinkList(head);
         System.out.println(isCycle);
+        int length = new CycleLinkListSearch().getCycleListLength(head);
+        System.out.println(length);
 
 
 
