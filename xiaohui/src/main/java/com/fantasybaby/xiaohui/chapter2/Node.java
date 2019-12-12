@@ -18,6 +18,9 @@ public class Node<T> implements Serializable{
 	private Node<T> next;
 	public Node() {
 	}
+	public Node(T data) {
+		this.data = data;
+	}
 	
 	public Node(Object data, Node<T> next) {
 		super();
