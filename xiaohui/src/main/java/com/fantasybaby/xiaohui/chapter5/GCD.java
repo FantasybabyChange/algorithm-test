@@ -49,10 +49,56 @@ public class GCD {
         return  calculateGCDRecursion(small,big % small);
     }
 
+    /**
+     * 使用更相减法
+     * @param a
+     * @param b
+     * @return
+     */
+    public int calculateGXJRecursion(int a,int b){
+        if(a == b){
+            return a;
+        }
+        int big;
+        int small;
+        if(a > b){
+            big = a;
+            small = b;
+        }else{
+            big = b;
+            small = a;
+        }
+        return  calculateGXJRecursion(small,big - small);
+    }
+
+    /**
+     * 通过移位 做到最优
+     * @param a
+     * @param b
+     * @return
+     */
+    public int calculateRemixJRecursion(int a,int b){
+        if(a == b){
+            return a;
+        }
+        int big;
+        int small;
+        if(a > b){
+            big = a;
+            small = b;
+        }else{
+            big = b;
+            small = a;
+        }
+        return  calculateGXJRecursion(small,big - small);
+    }
+
     public static void main(String[] args) {
         int i = new GCD().calculateGCD(12, 8);
         System.out.println(i);
         i = new GCD().calculateGCDRecursion(25, 5);
+        System.out.println(i);
+        i = new GCD().calculateGXJRecursion(25, 5);
         System.out.println(i);
     }
 
