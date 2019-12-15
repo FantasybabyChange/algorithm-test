@@ -72,7 +72,7 @@ public class GCD {
     }
 
     /**
-     * 通过移位 做到最优
+     * 通过移位 减少相减的次数 做到最优
      * @param a
      * @param b
      * @return
@@ -81,16 +81,35 @@ public class GCD {
         if(a == b){
             return a;
         }
-        int big;
-        int small;
-        if(a > b){
-            big = a;
-            small = b;
+        /**
+         * a,b都是偶数那就除以2  最后在乘以2
+         */
+        if(isEven(a) && isEven(b)){
+            return calculateRemixJRecursion(a>>1,b>>1) << 1;
+        }else if (isOdd(a) && isEven(b)){
+            return calculateRemixJRecursion(a,b>>1);
+        }else if (isEven(a) && isOdd(b)){
+            return calculateRemixJRecursion(a>>1,b);
         }else{
-            big = b;
-            small = a;
+            /**
+             * 如果都是偶数 就用更相减损法
+             */
+            int big = a > b ?a:b;
+            int small = a > b?b:a;
+            return calculateRemixJRecursion(big-small,small);
         }
-        return  calculateGXJRecursion(small,big - small);
+    }
+
+    /**
+     * 判断是否为奇数
+     * @param a
+     * @return
+     */
+    private boolean isOdd(int a){
+        return (a & 1) == 1;
+    }
+    private boolean isEven(int a){
+        return (a & 1) == 0;
     }
 
     public static void main(String[] args) {
@@ -99,6 +118,8 @@ public class GCD {
         i = new GCD().calculateGCDRecursion(25, 5);
         System.out.println(i);
         i = new GCD().calculateGXJRecursion(25, 5);
+        System.out.println(i);
+        i = new GCD().calculateRemixJRecursion(1000, 3100);
         System.out.println(i);
     }
 

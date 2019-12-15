@@ -23,8 +23,8 @@ public class BucketSort {
      * @param array
      */
     public double[] sort(double[] array){
-        double max = 0;
-        double min = 0;
+        double max = array[0];
+        double min = array[0];
         for (int i = 0; i < array.length; i++) {
             if(max < array[i]){
                 max = array[i];

@@ -38,8 +38,8 @@ public class CountSort {
      * @param array
      */
     public int[] sortImporve(int[] array) {
-        int max = 0;
-        int min = 0;
+        int max = array[0];
+        int min = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
                 max = array[i];
