@@ -19,6 +19,12 @@ public class NextBigPermutation {
         }
         return newArray;
     }
+
+    /**
+     * 转成整形
+     * @param array
+     * @return
+     */
     public Integer changeToInteger(int[] array){
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < array.length; i++) {
@@ -26,40 +32,73 @@ public class NextBigPermutation {
         }
         return Integer.parseInt(sb.toString());
     }
+
+    /**
+     *  找到逆序 边界
+     *  12354
+     *     ×
+     * @param array
+     * @return
+     */
+    public int searchChangePoint(int[] array){
+        for (int i = array.length - 1; i > 0; i--) {
+            if (array[i] > array[i -1]) {
+                return i;
+            }
+        }
+        return 0;
+
+    }
+
+    /**
+     * 交换边界前 和 边界后比边界前大的 最小的值
+     * 12354   -> 12453
+     * @param array
+     * @param index
+     */
+    public void changeHead(int[] array,int index){
+        int head = array[index - 1];
+        for (int i = array.length-1;  i >= index; i--) {
+            if (head < array[i]) {
+                int tmp = array[i];
+                array[i] = head;
+                head = tmp;
+                array[index - 1] = tmp;
+            }
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+    /**
+     * 给边界内的元素 升序排序
+     * @param array
+     * @param index
+     */
+    public void reverse(int[] array,int index){
+        for (int i = index,j= array.length - 1; i < j; i++,j--) {
+            int tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        }
+
+    }
     public Integer getNextBiggerNumber(int currentNumber){
         int[] array = changeToArray(currentNumber);
         if(array.length == 1){
             return array[0];
         }
-        int transferPoint = 0;
-        for (int i = array.length - 1; i > 0; i--) {
-            int i1 = array[i];
-            int i2 = array[i-1];
-            if(i1 > i2){
-                transferPoint = i;
-            }
-        }
+        int transferPoint = searchChangePoint(array);
+        System.out.println("transferPoint index:" + transferPoint);
         if(transferPoint == 0){
             return null;
         }
-        int tmp = array[transferPoint + 1];
-        array[transferPoint + 1] = array[array.length - 1];
-        array[array.length - 1] = tmp;
-        for (int i = array.length - 1; i > transferPoint; i--) {
-            int i1 = array[i];
-            int i2 = array[i-1];
-            if(i1 < i2){
-                int tmp = array[transferPoint + 1];
-                array[transferPoint + 1] = array[array.length - 1];
-                array[array.length - 1] = tmp;
-            }
-        }
-
-        return 0;
+        changeHead(array,transferPoint);
+        reverse(array,transferPoint);
+        return changeToInteger(array);
     }
 
     public static void main(String[] args) {
-        Integer nextBiggerNumber = new NextBigPermutation().getNextBiggerNumber(12354);
+        Integer nextBiggerNumber = new NextBigPermutation().getNextBiggerNumber(12453);
         System.out.println(nextBiggerNumber);
     }
 }
