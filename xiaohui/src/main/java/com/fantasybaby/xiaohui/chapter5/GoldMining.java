@@ -16,6 +16,21 @@ package com.fantasybaby.xiaohui.chapter5;
  */
 public class GoldMining {
     public int biggestGold(int n,int w,int[]g,int[] p){
-        return 0;
+        if(n == 0 || w == 0){
+            return 0;
+        }
+        if(w < p[n - 1]){
+            return biggestGold(n-1,w,g,p);
+        }
+        return Math.max(biggestGold(n-1,w,g,p),biggestGold(n-1,w-p[n-1],g,p)+g[n-1]);
+    }
+
+    public static void main(String[] args) {
+        int w = 10;
+        int n = 5;
+        int[]p = {5,5,3,4,3};
+        int[]g = {400,500,200,300,350};
+        int i = new GoldMining().biggestGold(n, w, g, p);
+        System.out.println(i);
     }
 }
