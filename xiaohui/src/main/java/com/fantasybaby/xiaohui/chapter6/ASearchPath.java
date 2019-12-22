@@ -14,9 +14,9 @@ import java.util.List;
  **/
 public class ASearchPath {
     public static int[][] MAZE = {
-            {0,0,0,0,0,0,0},
             {0,0,0,1,0,0,0},
             {0,0,0,1,0,0,0},
+            {0,0,1,1,0,0,0},
             {0,0,0,1,0,0,0},
             {0,0,0,0,0,0,0}
     };
@@ -94,7 +94,7 @@ public class ASearchPath {
      * @return
      */
     private boolean isValidGrid(int x, int y, List<Grid> openLIst, List<Grid> closeList){
-        if(x < 0 || x >=MAZE.length|| y<0 || y >= MAZE.length){
+        if(x < 0 || x >=MAZE.length|| y<0 || y > MAZE[0].length){
             return  false;
         }
         if(MAZE[x][y] == 1){
@@ -148,6 +148,8 @@ public class ASearchPath {
             for (int j = 0; j < maze[i].length; j++) {
                 if(aSearchPath.containGrid(path,i,j)){
                     System.out.print(" * ");
+                }else if(maze[i][j] == 1){
+                    System.out.print(" | ");
                 }else{
                     System.out.print(" , ");
                 }
