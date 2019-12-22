@@ -40,26 +40,26 @@ public abstract class AbstractLinkList<T> {
 	 * @param t
 	 * @return if insert successful return true
 	 */
-	public abstract boolean insert(int index,Object t);
+	public abstract boolean insert(int index, T t);
 	/**
 	 * 
 	 * @param index
 	 * @param t
 	 * @return if set successful return true
 	 */
-	public abstract boolean set(int index,Object t);
+	public abstract boolean set(int index, T t);
 	/**
 	 *insert in last
 	 * @param t
 	 * @return if add successful return true
 	 */
-	public abstract boolean add(Object t) ;
+	public abstract boolean add(T t) ;
 	/**
 	 * insert in pro 
 	 * @param t
 	 * @return if add successful return true
 	 */
-	public abstract boolean addPro(Object[] t) ;
+	public abstract boolean addPro(T[] t) ;
 	/**
 	 * delete the data element by index
 	 * @param index
