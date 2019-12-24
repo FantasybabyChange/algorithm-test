@@ -63,7 +63,7 @@ public  class SimpleLinkList<T> extends AbstractLinkList<T> {
 	}
 
 	@Override
-	public boolean insert(int index, Object t) {
+	public boolean insert(int index, T t) {
 		boolean isComplete = false;
 		if (index < 0 || index > size) {
 			throw new ArrayIndexOutOfBoundsException("index out of bound");
@@ -84,7 +84,7 @@ public  class SimpleLinkList<T> extends AbstractLinkList<T> {
 	}
 
 	@Override
-	public boolean set(int index, Object t) {
+	public boolean set(int index, T t) {
 		boolean isComplete = false;
 		if (index < 0 || index >= size) {
 			throw new ArrayIndexOutOfBoundsException("index out of bound");
@@ -100,10 +100,11 @@ public  class SimpleLinkList<T> extends AbstractLinkList<T> {
 		return isComplete;
 	}
 	/**
-	 * insert in last index 
+	 * insert in last index
+	 * @param t
 	 */
 	@Override
-	public boolean add(Object t) {
+	public boolean add(T t) {
 		boolean isComplete = false;
 		Node<T> nodeTmp = new Node<T>();
 		nodeTmp.setData(t);
@@ -123,9 +124,10 @@ public  class SimpleLinkList<T> extends AbstractLinkList<T> {
 	}
 	/**
 	 * insert at pro node
+	 * @param t
 	 */
 	@Override
-	public  boolean addPro(Object[] t) {
+	public  boolean addPro(T[] t) {
 		boolean isComplete = false;
 		if (t != null && t.length > 0) {
 			for (int i = (t.length-1); i >= 0; i--) {

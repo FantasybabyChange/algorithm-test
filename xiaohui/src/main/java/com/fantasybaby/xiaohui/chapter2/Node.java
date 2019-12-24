@@ -1,5 +1,8 @@
 package com.fantasybaby.xiaohui.chapter2;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -14,24 +17,30 @@ public class Node<T> implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4339114890944879710L;
-	private Object data;
+	private T data;
+	@Getter
+	@Setter
+	private String key;
 	private Node<T> next;
+	@Getter
+	@Setter
+	private Node<T> pre;
 	public Node() {
 	}
 	public Node(T data) {
 		this.data = data;
 	}
 	
-	public Node(Object data, Node<T> next) {
+	public Node(T data, Node<T> next) {
 		super();
 		this.data = data;
 		this.next = next;
 	}
 
-	public Object getData() {
+	public T getData() {
 		return data;
 	}
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 	public Node<T> getNext() {
