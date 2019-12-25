@@ -1,7 +1,5 @@
 package com.fantasybaby.leetcode.add;
 
-import java.util.List;
-
 /**
  *
  * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
@@ -86,7 +84,12 @@ public class AddSolution1 {
         return head;
     }
 
-
+    /**
+     * 通过补0简化一下循环
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
         int up = 0;
         ListNode lastNode = null;
