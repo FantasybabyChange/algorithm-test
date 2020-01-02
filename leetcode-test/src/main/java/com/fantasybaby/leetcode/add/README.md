@@ -6,7 +6,7 @@
 在将左边的和右边的分别放入两个部分   left_part和right_part
 当满足  len(left_part)=len(right_part) 并且 max(left_part)<= min(right_part)
 的时候,可以求出中位数,
-$$ mid=len(left_part)=len(right_part) / 2 $$
+$$mid=len(left_part)=len(right_part) / 2$$
  
  
   
