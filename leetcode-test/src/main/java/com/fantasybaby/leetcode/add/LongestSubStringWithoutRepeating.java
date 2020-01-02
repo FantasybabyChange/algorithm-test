@@ -86,7 +86,7 @@ public class LongestSubStringWithoutRepeating {
     public int lengthOfLongestSubstring2(String s) {
         int maxSubLength = 0;
         int startIndex = 0;
-        Map<Character,Integer> charWithLastIndex = new HashMap();
+        Map<Character,Integer> charWithLastIndex = new HashMap(s.length());
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(charWithLastIndex.containsKey(c)){
