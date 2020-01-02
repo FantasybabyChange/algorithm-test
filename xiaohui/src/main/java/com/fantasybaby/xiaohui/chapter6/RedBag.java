@@ -59,5 +59,8 @@ public class RedBag {
     public static void main(String[] args) {
         int[] ints = new RedBag().dividedRedBag(1000, 5);
         System.out.println(Arrays.toString(ints));
+
+        List<Integer> integers = new RedBag().dividedRedBag1(1000, 5);
+        integers.forEach(System.out::println);
     }
 }
