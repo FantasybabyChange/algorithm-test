@@ -5,13 +5,8 @@
 我们将 A数组 从 i划分  B数组从 j划分,
 在将左边的和右边的分别放入两个部分   left_part和right_part
 当满足  len(left_part)=len(right_part) 并且 max(left_part)<= min(right_part)
-<<<<<<< HEAD
 的时候,可以求出中位数.  
 `mid=len(left_part)=len(right_part) / 2`
-=======
-的时候,可以求出中位数,
-$$mid=len(left_part)=len(right_part) / 2$$
->>>>>>> 93de2d1f2eaa57acfa70ed3212ea34e9b7c6082c
  
  
   

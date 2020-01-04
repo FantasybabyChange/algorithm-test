@@ -4,15 +4,14 @@ plugins {
 
     // Apply the application plugin to add support for building an application
     id 'application'
+    id 'idea'
 }
 
 group 'com.fantasybaby'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
-
-[compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
-
+targetCompatibility = 1.8
 // Define the main class for the application
 [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 dependencies {
