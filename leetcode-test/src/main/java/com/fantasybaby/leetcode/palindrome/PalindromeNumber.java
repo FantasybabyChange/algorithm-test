@@ -4,7 +4,7 @@
  * 本软件为上海快仓智能科技开发研制。未经本公司正式书面同意，其他任何个人、团体
  * 不得使用、复制、修改或发布本软件.
  *****************************************************************************/
-package java.com.fantasybaby.leetcode.palindrome;
+package com.fantasybaby.leetcode.palindrome;
 
 /**
  * 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
@@ -33,11 +33,34 @@ public class PalindromeNumber {
         if(x <0 ){
             return false;
         }
-        return false;
+        int a = x;
+        int ans = 0;
+        while(a != 0){
+            ans = ans * 10 + a % 10;
+            a = a / 10;
+        }
+        return ans == x;
+    }
+
+    /**
+     * 通过只转换一般 防止溢出
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome1(int x) {
+        if(x <0  || (x % 10 == 0 && x != 0)){
+            return false;
+        }
+        int ans = 0;
+        while(x > ans){
+            ans = ans * 10 + x % 10;
+            x /= 10;
+        }
+        //由于可能会有奇数的情况 所以要/10
+        return ans == x || x == ans /10;
     }
 
     public static void main(String[] args) {
-        int i = 0 % 10;
-        System.out.println(i);
+        System.out.println(new PalindromeNumber().isPalindrome1(12321));
     }
 }
