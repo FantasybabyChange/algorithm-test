@@ -88,6 +88,10 @@ public class ZigzagConversion {
      * 3.中间层的下标间距总是step-2*行数，2*行数交替。
      *
      * 4.下标不能超过len(s)-1
+     * (1)行 00 中的字符位于索引 k(2⋅numRows−2) 处;
+     * (2)行 numRows−1 中的字符位于索引 k(2⋅numRows−2)+numRows−1 处;
+     * (3)内部的 行i 中的字符位于索引k(2⋅numRows−2)+i 以及 (k+1)(2⋅numRows−2)−i 处
+
      * @param s
      * @param numRows
      * @return
@@ -108,10 +112,39 @@ public class ZigzagConversion {
         return ret.toString();
     }
 
+    /**
+     * 起始下标都是行号
+     *
+     * 第0层和第numRows-1层的下标间距总是step 。
+     *
+     * 中间层的下标间距总是step-2*行数，2*行数交替。
+     *
+     * 下标不能超过len(s)-1
+     * @return
+     */
+    String convert2(String s, int numRows) {
+        if (numRows == 1) return s;
+        int step = numRows * 2 - 2; // 间距
+        int index,add;// 记录s的下标 // 真实的间距
+        int len = s.length();
+        StringBuilder ret = new StringBuilder();
+        for (int i = 0; i < numRows; i++) // i表示行号
+        {
+            index = i;
+            add = i * 2;
+            while (index < len)//超出字符串长度计算下一层
+            {
+                ret.append(s.charAt(index)); // 当前行的第一个字母
+                add = step - add;// 第一次间距是step -2*i，第二次是2*i,
+                index += (i == 0 || i == numRows-1) ? step : add; // 0行和最后一行使用step间距，其余使用add间距
+            }
+        }
+        return ret.toString();
+    }
     public static void main(String[] args) {
-        String st = "AB";
-        int index = 1;
-        String convert = new ZigzagConversion().convert(st, index);
+        String st = "PAYPALISHIRING";
+        int index = 3;
+        String convert = new ZigzagConversion().convert2(st, index);
         System.out.println(convert);
     }
 }
