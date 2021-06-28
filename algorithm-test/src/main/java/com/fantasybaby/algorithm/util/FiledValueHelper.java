@@ -1,11 +1,7 @@
 
 package com.fantasybaby.algorithm.util;
 
-import com.google.common.collect.Lists;
-
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author reid.liu

@@ -4,9 +4,9 @@ package com.fantasybaby.algorithm.sort;
 import com.fantasybaby.algorithm.util.FiledValueHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import javafx.util.Pair;
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.text.NumberFormat;
 import java.util.Comparator;
@@ -21,23 +21,26 @@ import java.util.stream.Collectors;
  */
 public class SortByGroupSorter {
     private List<SortMappingObject> sortObjects = Lists.newArrayList();
-    private Map<Integer,SortObject> map = Maps.newHashMap();
+    private Map<Integer, SortObject> map = Maps.newHashMap();
     private List<SortObject> sorts;
+
     @Data
     @ToString
-    class SortMappingObject{
+    class SortMappingObject {
         private int id;
         private int group;
     }
+
     @Data
     @ToString
-    class SortObject{
+    class SortObject {
         private int id;
         private String name;
         private int age;
         private String order;
     }
-    public  void sort(){
+
+    public void sort() {
         initData();
         /*sortObjects.sort((a,b)->{
             SortObject o1 = map.get(a.getId());
@@ -54,11 +57,11 @@ public class SortByGroupSorter {
         });*/
         boolean firstFlag = true;
         List<Pair> fileds = Lists.newArrayList();
-        Pair<String,String> f1 = new Pair<>("age","");
-        Pair<String,String> f2 = new Pair<>("name","DESC");
+        Pair<String, String> f1 = Pair.of("age", "");
+        Pair<String, String> f2 = Pair.of("name", "DESC");
         fileds.add(f1);
         fileds.add(f2);
-        sorts.sort((a,b)->{
+        sorts.sort((a, b) -> {
             int ret = 0;
             for (Pair result : fileds) {
                 Object af1 = FiledValueHelper.getFieldByClasss((String) result.getKey(), a);
@@ -78,10 +81,10 @@ public class SortByGroupSorter {
                     str2 = addZero2Str(time2, maxlen);
                 }
                 ret = str1.compareTo(str2);
-                if(ret == 0){
+                if (ret == 0) {
                     continue;
                 }
-                if("DESC".equals(result.getValue())){
+                if ("DESC".equals(result.getValue())) {
                     return -ret;
                 }
                 return ret;
@@ -104,15 +107,14 @@ public class SortByGroupSorter {
 //        List<SortObject> collect = sorts.stream().sorted(sortObjectComparator).collect(Collectors.toList());
         sorts.stream().forEach(System.out::println);
     }
+
     /**
      * 给数字对象按照指定长度在左侧补0.
-     *
+     * <p>
      * 使用案例: addZero2Str(11,4) 返回 "0011", addZero2Str(-18,6)返回 "-000018"
      *
-     * @param numObj
-     *            数字对象
-     * @param length
-     *            指定的长度
+     * @param numObj 数字对象
+     * @param length 指定的长度
      * @return
      */
     public static String addZero2Str(Number numObj, int length) {
@@ -125,7 +127,8 @@ public class SortByGroupSorter {
         nf.setMinimumIntegerDigits(length);
         return nf.format(numObj);
     }
-    public void initData(){
+
+    public void initData() {
         sorts = Lists.newArrayList();
         SortObject sortObject = new SortObject();
         sortObject.setId(1);
@@ -154,7 +157,7 @@ public class SortByGroupSorter {
         sorts.add(sortObject1);
         sorts.add(sortObject2);
         sorts.add(sortObject3);
-        map = sorts.stream().collect(Collectors.toMap(SortObject::getId,p->p));
+        map = sorts.stream().collect(Collectors.toMap(SortObject::getId, p -> p));
         int i = 1;
         for (SortObject object : sorts) {
             SortMappingObject so = new SortMappingObject();
