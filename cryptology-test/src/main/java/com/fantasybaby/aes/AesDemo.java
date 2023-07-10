@@ -37,9 +37,9 @@ public class AesDemo {
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-        SecureRandom secureRandom = new SecureRandom();
-        int keyBitSize = 128;
-        keyGenerator.init(keyBitSize, secureRandom);
+//        SecureRandom secureRandom = new SecureRandom();
+//        int keyBitSize = 128;
+//        keyGenerator.init(keyBitSize, secureRandom);
         SecretKey secretKey = keyGenerator.generateKey();
         byte[] encoded = secretKey.getEncoded();
         String key = Base64.getEncoder().encodeToString(encoded);
